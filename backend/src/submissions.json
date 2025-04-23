@@ -241,5 +241,152 @@
         "severity": "medium"
       }
     ]
+  },
+  {
+    "timestamp": "2025-04-23T04:40:23.208Z",
+    "candidate": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "jdoe@email.com",
+      "dob": "1990-01-01T05:00:00.000Z",
+      "legalStatus": "Permanent Resident",
+      "hasLicense": "Yes",
+      "licenseType": "Canadian",
+      "practiceHours": 720,
+      "meetsCanadianExperience": "No",
+      "tdmWritten": "Yes",
+      "tdmResult": "Pass",
+      "praOtherJurisdiction": "Yes",
+      "medSchool": "School",
+      "medProgram": "Medicine",
+      "gradYear": 2022,
+      "educationLanguage": "English",
+      "ielts": 4,
+      "oet": "C",
+      "celpip": 5,
+      "englishSpeakingPractice": "Yes",
+      "englishExpiredOrExceeded": "Yes",
+      "activeEnglishUse": "Yes",
+      "nacDate": "2025-04-10T04:00:00.000Z",
+      "mccqe1Date": "2025-04-21T04:00:00.000Z",
+      "mccqe2Date": "2025-04-17T04:00:00.000Z",
+      "postgradMonths": 16,
+      "independentMonths": 64,
+      "rotationsCompleted": 8,
+      "impairment": "No"
+    },
+    "flags": [
+      {
+        "field": "praOtherJurisdiction",
+        "message": "PRA attempt in another jurisdiction",
+        "severity": "low"
+      },
+      {
+        "field": "ielts",
+        "message": "IELTS score is below 7",
+        "severity": "medium"
+      },
+      {
+        "field": "oet",
+        "message": "OET score is below B",
+        "severity": "medium"
+      },
+      {
+        "field": "celpip",
+        "message": "CELPIP score is below 9",
+        "severity": "medium"
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-04-23T04:41:56.895Z",
+    "candidate": {
+      "dob": null,
+      "nacDate": null,
+      "mccqe1Date": null,
+      "mccqe2Date": null
+    },
+    "flags": [
+      {
+        "field": "firstName",
+        "message": "firstName is missing",
+        "severity": "low"
+      },
+      {
+        "field": "lastName",
+        "message": "lastName is missing",
+        "severity": "low"
+      },
+      {
+        "field": "email",
+        "message": "email is missing",
+        "severity": "low"
+      },
+      {
+        "field": "dob",
+        "message": "dob is missing",
+        "severity": "low"
+      },
+      {
+        "field": "legalStatus",
+        "message": "Must be PR or Citizen",
+        "severity": "high"
+      },
+      {
+        "field": "hasLicense",
+        "message": "No driver’s license",
+        "severity": "medium"
+      },
+      {
+        "field": "practiceHours",
+        "message": "Less than 720 practice hours",
+        "severity": "medium"
+      },
+      {
+        "field": "tdm",
+        "message": "Failed or didn’t write TDM",
+        "severity": "high"
+      },
+      {
+        "field": "medSchool",
+        "message": "Missing medical school/university name",
+        "severity": "low"
+      },
+      {
+        "field": "medProgram",
+        "message": "Missing medical degree program name",
+        "severity": "low"
+      },
+      {
+        "field": "gradYear",
+        "message": "Invalid or missing graduation year",
+        "severity": "medium"
+      },
+      {
+        "field": "educationLanguage",
+        "message": "Missing language of education",
+        "severity": "low"
+      },
+      {
+        "field": "postgrad",
+        "message": "Postgrad + Independent practice does not meet minimum",
+        "severity": "medium"
+      },
+      {
+        "field": "nacDate",
+        "message": "Missing NAC exam date",
+        "severity": "medium"
+      },
+      {
+        "field": "mccqe1Date",
+        "message": "Must have MCCQE1 date or LMCC to be eligible",
+        "severity": "high"
+      },
+      {
+        "field": "rotationsCompleted",
+        "message": "Fewer than 7 rotations",
+        "severity": "medium"
+      }
+    ]
   }
 ]
