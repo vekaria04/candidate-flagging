@@ -388,5 +388,62 @@
         "severity": "medium"
       }
     ]
+  },
+  {
+    "timestamp": "2025-04-23T04:56:35.650Z",
+    "candidate": {
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@email.com",
+      "dob": "1989-05-31T04:00:00.000Z",
+      "legalStatus": "Permanent Resident",
+      "hasLicense": "Yes",
+      "licenseType": "International",
+      "practiceHours": 710,
+      "meetsCanadianExperience": "Yes",
+      "tdmWritten": "Yes",
+      "tdmResult": "Pass",
+      "praOtherJurisdiction": "No",
+      "medSchool": "School",
+      "medProgram": "Med",
+      "gradYear": 2022,
+      "educationLanguage": "Eng",
+      "ielts": 8,
+      "oet": "A",
+      "celpip": 9,
+      "englishSpeakingPractice": "Yes",
+      "englishExpiredOrExceeded": "No",
+      "activeEnglishUse": "Yes",
+      "nacDate": "2025-04-08T04:00:00.000Z",
+      "mccqe1Date": "2025-03-31T04:00:00.000Z",
+      "mccqe2Date": "2025-04-11T04:00:00.000Z",
+      "lmcc": true,
+      "postgradMonths": 23,
+      "independentMonths": 31,
+      "rotationsCompleted": 6,
+      "impairment": "No"
+    },
+    "flags": [
+      {
+        "field": "practiceHours",
+        "message": "Less than 720 practice hours",
+        "severity": "medium"
+      },
+      {
+        "field": "englishExpiredOrExceeded",
+        "message": "English exam expired or didn’t exceed minimum requirement",
+        "severity": "medium"
+      },
+      {
+        "field": "postgrad",
+        "message": "Postgrad + Independent practice does not meet minimum",
+        "severity": "medium"
+      },
+      {
+        "field": "rotationsCompleted",
+        "message": "Fewer than 7 rotations",
+        "severity": "medium"
+      }
+    ]
   }
 ]
