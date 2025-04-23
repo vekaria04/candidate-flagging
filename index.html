@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="flagApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Candidate Evaluation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- PrimeNG Theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeng/resources/themes/lara-light-indigo/theme.min.css">
+
+<!-- PrimeNG Core Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeng/resources/primeng.min.css">
+
+<!-- PrimeIcons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons/primeicons.css">
+
+<!-- PrimeFlex for grid layout -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeflex@3.3.1/primeflex.min.css">
+
+<!-- PrimeNG CSS for DataTable -->
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #fff8f0; padding: 2rem; }
+    .p-card { background: #fff; }
+    .p-field label { font-weight: 600; }
+    .high { color: red; font-weight: bold; }
+    .medium { color: orange; font-weight: bold; }
+    .low { color: green; font-weight: bold; }
+  </style>
+</head>
+<body ng-controller="FlagController">
+
+<div class="p-card p-shadow-4 p-p-4" style="max-width: 1100px; margin: auto; padding-left: 2rem; padding-right: 2rem;">
+  <h2 class="p-text-center p-text-primary p-mb-4" >Candidate Evaluation Form </h2>
+
+  <form ng-submit="submitCandidate()">
+    <!-- 1. Personal Info -->
+    <h4>1. Personal Information</h4>
+    <div class="p-grid">
+      <div class="p-col-6 p-field"><label> First Name  </label><input ng-model="candidate.firstName" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Last Name  </label><input ng-model="candidate.lastName" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Email  </label><input ng-model="candidate.email" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Date of Birth  </label><input type="date" ng-model="candidate.dob" class="p-inputtext p-component p-fluid"></div>
+    </div>
+
+    <!-- 2. Legal Status -->
+    <h4>2. Legal Status & Driver’s License</h4>
+    <div class="p-grid">
+      <div class="p-col-4 p-field"><label> Legal Status  </label><select ng-model="candidate.legalStatus" class="p-inputtext p-component p-fluid"><option>Permanent Resident</option><option>Canadian Citizen</option><option>Other</option></select></div>
+      <div class="p-col-4 p-field"><label> Has Driver’s License  </label><select ng-model="candidate.hasLicense" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+      <div class="p-col-4 p-field"><label> License Type  </label><select ng-model="candidate.licenseType" class="p-inputtext p-component p-fluid"><option>Canadian</option><option>International</option></select></div>
+    </div>
+
+    <!-- 3. Practice -->
+    <h4>3. Canadian Practice Experience</h4>
+    <div class="p-grid">
+      <div class="p-col-6 p-field"><label> Total Practice Hours  </label><input type="number" ng-model="candidate.practiceHours" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Meets Canadian Experience  </label><select ng-model="candidate.meetsCanadianExperience" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+    </div>
+
+    <!-- 4. TDM & PRA -->
+    <h4>4. TDM & PRA Attempts</h4>
+    <div class="p-grid">
+      <div class="p-col-4 p-field"><label> Written TDM  </label><select ng-model="candidate.tdmWritten" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+      <div class="p-col-4 p-field"><label> Result TDM  </label><select ng-model="candidate.tdmResult" class="p-inputtext p-component p-fluid"><option>Pass</option><option>Fail</option></select></div>
+      <div class="p-col-4 p-field"><label> PRA in Other Jurisdiction  </label><select ng-model="candidate.praOtherJurisdiction" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+    </div>
+
+    <!-- 5. Medical Education -->
+    <h4>5. Medical Education</h4>
+    <div class="p-grid">
+      <div class="p-col-6 p-field"><label> Medical School  </label><input ng-model="candidate.medSchool" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Program Name  </label><input ng-model="candidate.medProgram" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Graduation Year  </label><input type="number" ng-model="candidate.gradYear" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Language of Education  </label><input ng-model="candidate.educationLanguage" class="p-inputtext p-component p-fluid"></div>
+    </div>
+
+    <!-- 6. English Proficiency -->
+    <h4>6. English Proficiency</h4>
+    <div class="p-grid">
+      <div class="p-col-3 p-field"><label> IELTS  </label><input type="number" ng-model="candidate.ielts" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-3 p-field"><label> OET  </label><input ng-model="candidate.oet" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-3 p-field"><label> CELPIP  </label><input type="number" ng-model="candidate.celpip" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-3 p-field"><label> Recent English Practice  </label><select ng-model="candidate.englishSpeakingPractice" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+      <div class="p-col-6 p-field"><label> English Exam Expired or Below Min  </label><select ng-model="candidate.englishExpiredOrExceeded" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+      <div class="p-col-6 p-field"><label> Active Use of English  </label><select ng-model="candidate.activeEnglishUse" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+    </div>
+
+    <!-- 7. Exams -->
+    <h4>7. Examinations</h4>
+    <div class="p-grid">
+      <div class="p-col-4 p-field"><label> NAC Date  </label><input type="date" ng-model="candidate.nacDate" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-4 p-field"><label> MCCQE1 Date  </label><input type="date" ng-model="candidate.mccqe1Date" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-4 p-field"><label> MCCQE2 Date  </label><input type="date" ng-model="candidate.mccqe2Date" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-12 p-field"><label><input type="checkbox" ng-model="candidate.lmcc"> Has LMCC</label></div>
+    </div>
+
+    <!-- 8. Postgrad -->
+    <h4>8. Postgraduate Training</h4>
+    <div class="p-grid">
+      <div class="p-col-6 p-field"><label> Postgrad Months </label><input type="number" ng-model="candidate.postgradMonths" class="p-inputtext p-component p-fluid"></div>
+      <div class="p-col-6 p-field"><label> Independent Practice Months  </label><input type="number" ng-model="candidate.independentMonths" class="p-inputtext p-component p-fluid"></div>
+    </div>
+
+    <!-- 9. Rotations -->
+    <h4>9. Rotations</h4>
+    <div class="p-grid">
+      <div class="p-col-12 p-field"><label> Completed Rotations  </label><input type="number" ng-model="candidate.rotationsCompleted" class="p-inputtext p-component p-fluid"></div>
+    </div>
+
+    <!-- 10. Impairment -->
+    <h4>10. Impairment</h4>
+    <div class="p-grid">
+      <div class="p-col-12 p-field p-mb-5"><label> Impairment  </label><select ng-model="candidate.impairment" class="p-inputtext p-component p-fluid"><option>Yes</option><option>No</option></select></div>
+    </div>
+
+    <!-- Submit and/or Clear -->
+    <div class="p-d-flex p-jc-center p-ai-center">
+        <button type="submit" class="p-button p-button-success p-button-lg" style="margin-top: 3rem; margin-bottom: 2rem; gap: 1rem;">
+          <i class="pi pi-check p-mr-2"></i> Evaluate
+        </button>
+      
+        <button type="button" class="p-button p-button-secondary p-button-lg" style="margin-top: 3rem; margin-bottom: 2rem; gap: 1rem;" ng-click="clearForm()">
+          <i class="pi pi-times p-mr-2"></i> Clear All
+        </button>
+    </div>
+    
+<!-- Flagged Issues -->
+<div ng-if="flags.length > 0" class="p-mt-5">
+    <h4 class="p-text-center">Flagged Issues</h4>
+    <!-- Table for displaying flagged issues -->
+    <div class="p-shadow-3 p-p-3 p-mb-3" style="overflow-x: auto;">
+      <table class="p-datatable p-datatable-sm p-datatable-gridlines" style="width: 100%;">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Message</th>
+            <th>Severity</th>
+            <th>Override</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through flags and display them in the table -->
+          <tr ng-repeat="flag in flags">
+            <td>{{flag.field}}</td>
+            <td>{{flag.message}}</td>
+            <td>
+                <!-- Display severity as a colored tag based on its value -->
+                <span class="p-tag"
+                      ng-class="{
+                        'p-tag-danger': (flag.severity || '').toLowerCase() === 'high',
+                        'p-tag-warning': (flag.severity || '').toLowerCase() === 'medium',
+                        'p-tag-success': (flag.severity || '').toLowerCase() === 'low'
+                      }">
+                  {{ (flag.severity || '').toUpperCase() }}
+                </span>
+              </td>                     
+            <td><input type="checkbox" ng-model="flag.override" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Button to remove selected overrides -->
+    <div class="p-d-flex p-jc-end">
+      <button class="p-button p-button-warning p-mt-2" ng-click="removeOverrides()">
+        <i class="pi pi-times p-mr-2"></i> Override Selected Flags
+      </button>
+    </div>
+  </div>
+  
+  <!-- AngularJS Script -->
+  <script>
+    angular.module('flagApp', [])
+    // Define the main module and controller
+      .controller('FlagController', function($scope, $http) {
+        $scope.candidate = {};
+        $scope.flags = [];
+
+        // Submit function to send candidate data to the server
+        $scope.submitCandidate = function() {
+          $http.post('http://localhost:3000/evaluate', $scope.candidate)
+            .then(function(response) {
+              $scope.flags = response.data.flags;
+            });
+        };
+
+        // Function to remove selected overrides from the flags array
+        $scope.removeOverrides = function () {
+          $scope.flags = $scope.flags.filter(flag => !flag.override);
+        };
+
+        // Function to clear the form and reset the flags
+        $scope.clearForm = function () {
+            $scope.candidate = {};
+            $scope.flags = [];
+        };
+      });
+  </script>
+</body>
+</html>
